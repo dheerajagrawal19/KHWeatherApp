@@ -1,0 +1,21 @@
+<div style="text-align:center">
+  <table style="text-align:center">
+    <tr>
+      <td>
+        Start Month <month-picker (change)="onStartTimeChange($event.srcElement.value)" [value]="startMonth">
+        </month-picker>
+      </td>
+      <td>
+        Start Year <year-picker (change)="onStartYearChange($event.srcElement.value)"> </year-picker>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        End Month <month-picker (change)="onEndTimeChange($event.srcElement.value)"> </month-picker>
+      </td>
+      <td>
+        End Year <year-picker (change)="onYearEndChange($event.srcElement.value)"> </year-picker>
+      </td>
+    </tr>
+  </table>
+</div>
