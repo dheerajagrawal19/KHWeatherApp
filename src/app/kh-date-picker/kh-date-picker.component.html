@@ -1,20 +1,31 @@
-<div style="text-align:center">
+<div style="text-align:center" [hidden]="showDates">
   <table style="text-align:center">
     <tr>
-      <td>
-        Start Month <month-picker (change)="onStartTimeChange($event.srcElement.value)" [value]="startMonth">
-        </month-picker>
+      <td>Start Month
+        <select required (change)="onStartTimeChange($event.srcElement.value)">
+          <option *ngFor="let p of months" [selected]="startMonth === p.val ">{{p.name}}</option>
+        </select>
       </td>
       <td>
-        Start Year <year-picker (change)="onStartYearChange($event.srcElement.value)"> </year-picker>
+        Start Year
+        <select required (change)="onStartYearChange($event.srcElement.value)">
+          <option *ngFor="let y of years" [selected]="startYear === y ">{{startYear}}</option>
+        </select>
       </td>
+
     </tr>
     <tr>
       <td>
-        End Month <month-picker (change)="onEndTimeChange($event.srcElement.value)"> </month-picker>
+        End Month
+        <select required (change)="onEndTimeChange($event.srcElement.value)">
+          <option *ngFor="let p of months" [selected]="endMonth === p.val ">{{p.name}}</option>
+        </select>
       </td>
       <td>
-        End Year <year-picker (change)="onYearEndChange($event.srcElement.value)"> </year-picker>
+        End Year
+        <select required (change)="onYearEndChange($event.srcElement.value)">
+          <option *ngFor="let y of years" [selected]="endYear === y ">{{endYear}}</option>
+        </select>
       </td>
     </tr>
   </table>

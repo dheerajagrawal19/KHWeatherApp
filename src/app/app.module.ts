@@ -11,8 +11,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMenuModule, MatSelectModule, MatInputModule, MatButtonModule, MatNativeDateModule } from '@angular/material';
 import { MyLineChartComponent } from './my-line-chart/my-line-chart.component';
 import { KhDatePickerComponent } from './kh-date-picker/kh-date-picker.component';
-import { MonthPicker } from './month-picker';
-import { YearPicker } from './year-picker';
 import { RangeEmitterService } from './range-emitter.service';
 import { ChartUpdaterService } from './chart-updater.service';
 
@@ -20,9 +18,7 @@ import { ChartUpdaterService } from './chart-updater.service';
   declarations: [
     AppComponent,
     MyLineChartComponent,
-    KhDatePickerComponent,
-    MonthPicker,
-    YearPicker
+    KhDatePickerComponent
   ],
   imports: [
     BrowserModule,

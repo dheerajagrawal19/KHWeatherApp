@@ -11,13 +11,16 @@ import { RangeEmitterService } from './range-emitter.service';
 export class AppComponent {
 
   title = 'Weather-app';
-  selectedPlace: String = "UK";
-  selectedMetric: String = "Tmax";
+  selectedPlace: String //= "UK";
+  selectedMetric: String //= "Tmax";
   w_data: WeatherData[] = []
 
   constructor(private weatherService: WeatherService, private rangeEmitterService: RangeEmitterService) { }
 
   updateData() {
+    if (this.selectedMetric == undefined || this.selectedPlace == undefined)
+      return;
+
     var data = this.weatherService.getWeatherData(this.selectedMetric, this.selectedPlace);
     data.subscribe(d => {
       this.w_data = d

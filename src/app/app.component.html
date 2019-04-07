@@ -6,18 +6,18 @@
   <ul style="list-style: none;">
     <li>
       <mat-form-field>
-        <mat-select placeholder="Pick a Location" [(value)]="selectedPlace"
-          (selectionChange)="placeChanged($event.value)">
-          <mat-option value="UK" default>UK</mat-option>
+        <!-- [(value)]="selectedPlace" -->
+        <mat-select placeholder="Pick a Location" (selectionChange)="placeChanged($event.value)">
+          <mat-option value="UK">UK</mat-option>
           <mat-option value="England">England</mat-option>
           <mat-option value="Scotland">Scotland</mat-option>
           <mat-option value="Wales">Wales</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-select placeholder="Pick a Metric" [(value)]="selectedMetric"
-          (selectionChange)="metricChanged($event.value)">
-          <mat-option value="Tmax" default>Max temperature</mat-option>
+        <!-- [(value)]="selectedMetric" -->
+        <mat-select placeholder="Pick a Metric" (selectionChange)="metricChanged($event.value)">
+          <mat-option value="Tmax">Max temperature</mat-option>
           <mat-option value="Tmin">Min temperature</mat-option>
           <mat-option value="Rainfall">Rainfall</mat-option>
         </mat-select>
