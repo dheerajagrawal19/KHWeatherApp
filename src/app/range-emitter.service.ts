@@ -7,12 +7,12 @@ import { WeatherData } from './weatherData';
 })
 export class RangeEmitterService {
 
-  invokeFirstComponentFunction = new EventEmitter();
+  invokeRangeSetFunction = new EventEmitter();
   subsVar: Subscription;
 
   constructor() { }
 
-  onFirstComponentButtonClick(data: WeatherData[]) {
-    this.invokeFirstComponentFunction.emit(data);
+  onRangeSetupEvent(data: WeatherData[]) {
+    this.invokeRangeSetFunction.emit(data);
   }
 }

@@ -11,8 +11,8 @@ import { RangeEmitterService } from './range-emitter.service';
 export class AppComponent {
 
   title = 'Weather-app';
-  selectedPlace: String //= "UK";
-  selectedMetric: String //= "Tmax";
+  selectedPlace: String
+  selectedMetric: String
   w_data: WeatherData[] = []
 
   constructor(private weatherService: WeatherService, private rangeEmitterService: RangeEmitterService) { }
@@ -24,7 +24,7 @@ export class AppComponent {
     var data = this.weatherService.getWeatherData(this.selectedMetric, this.selectedPlace);
     data.subscribe(d => {
       this.w_data = d
-      this.rangeEmitterService.onFirstComponentButtonClick(this.w_data);
+      this.rangeEmitterService.onRangeSetupEvent(this.w_data);
     });
   }
 

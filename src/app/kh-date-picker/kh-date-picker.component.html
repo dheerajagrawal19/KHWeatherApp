@@ -9,7 +9,7 @@
       <td>
         Start Year
         <select required (change)="onStartYearChange($event.srcElement.value)">
-          <option *ngFor="let y of years" [selected]="startYear === y ">{{startYear}}</option>
+          <option *ngFor="let y of years" [selected]="startYear === y ">{{y}}</option>
         </select>
       </td>
 
@@ -24,7 +24,7 @@
       <td>
         End Year
         <select required (change)="onYearEndChange($event.srcElement.value)">
-          <option *ngFor="let y of years" [selected]="endYear === y ">{{endYear}}</option>
+          <option *ngFor="let y of years" [selected]="endYear === y ">{{y}}</option>
         </select>
       </td>
     </tr>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RangeEmitterService } from '../range-emitter.service';
 import { WeatherData } from '../weatherData';
 import { Month } from '../month';
+import { ChartUpdaterService } from '../chart-updater.service';
 
 @Component({
   selector: 'app-kh-date-picker',
@@ -14,8 +15,10 @@ export class KhDatePickerComponent implements OnInit {
   endMonth: String = ""
   startYear: number = 1990
   endYear: number = 2019
+  w_data: WeatherData[] = []
 
-  constructor(private rangeEmitterService: RangeEmitterService) { }
+  constructor(private rangeEmitterService: RangeEmitterService, private chartUpdaterService: ChartUpdaterService) { }
+
   years: number[] = [];
   months: Month[] = [
     { val: '01', name: 'Jan' },
@@ -36,14 +39,13 @@ export class KhDatePickerComponent implements OnInit {
 
     if (this.rangeEmitterService.subsVar == undefined) {
       this.rangeEmitterService.subsVar = this.rangeEmitterService.
-        invokeFirstComponentFunction.subscribe((data: WeatherData[]) => {
+        invokeRangeSetFunction.subscribe((data: WeatherData[]) => {
           this.setInitialValues(data);
         });
     }
   }
 
   setInitialValues(data: WeatherData[]) {
-    console.log(data);
     let ln = data.length
     this.startMonth = '' + data[0].month;
     this.endMonth = '' + data[ln - 1].month;
@@ -61,6 +63,7 @@ export class KhDatePickerComponent implements OnInit {
     this.startYear = this.years[0];
     this.endYear = this.years[this.years.length - 1];
 
+    this.w_data = data;
     this.showDates = false;
   }
 
@@ -82,9 +85,7 @@ export class KhDatePickerComponent implements OnInit {
   }
 
   udpateChart() {
-    console.log(this.startMonth);
-    console.log(this.startYear);
-    console.log(this.endMonth);
-    console.log(this.endYear);
+    let n_data = this.w_data
+    this.chartUpdaterService.onChartUpdateEvent(n_data);
   }
 }

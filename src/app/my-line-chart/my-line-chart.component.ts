@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { WeatherData } from '../weatherData';
+import { ChartUpdaterService } from '../chart-updater.service';
 
 @Component({
   selector: 'app-my-line-chart',
@@ -15,8 +16,8 @@ export class MyLineChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,0,0,0.3)',
+      borderColor: 'blue',
+      backgroundColor: 'rgba(255,0,255,0.3)',
     },
   ];
   public lineChartLegend = true;
@@ -24,21 +25,35 @@ export class MyLineChartComponent implements OnInit {
   public lineChartPlugins = [];
 
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Weather Data' },
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-  constructor() { }
+  constructor(private chartUpdaterService: ChartUpdaterService) { }
 
   ngOnInit() {
+    if (this.chartUpdaterService.subsVar == undefined) {
+      this.chartUpdaterService.subsVar = this.chartUpdaterService.
+        invokeChartUpdateFunction.subscribe((data: WeatherData[]) => {
+          this.setlineChartData(data);
+        });
+    }
   }
 
   setlineChartData(list: WeatherData[]) {
-    this.lineChartData["data"] = []
+    console.log(list);
+    function getLabel(obj: WeatherData): string {
+      return "" + obj.year + "'" + obj.month;
+    }
+
+    this.lineChartData[0]["data"] = []
     this.lineChartLabels = []
     list.forEach(element => {
-      this.lineChartData["data"].push(element.value);
-      this.lineChartLabels.push(element.getLabel());
+      this.lineChartData[0]["data"].push(element.value);
+      this.lineChartLabels.push(getLabel(element));
     });
+
+    console.log(this.lineChartData)
+    console.log(this.lineChartLabels)
   }
 }
