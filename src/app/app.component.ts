@@ -24,6 +24,9 @@ export class AppComponent {
     var data = this.weatherService.getWeatherData(this.selectedMetric, this.selectedPlace);
     data.subscribe(d => {
       this.w_data = d
+      this.w_data.forEach(elem => {
+        elem.legend = this.selectedMetric + ", " + this.selectedPlace;
+      });
       this.rangeEmitterService.onRangeSetupEvent(this.w_data);
     });
   }

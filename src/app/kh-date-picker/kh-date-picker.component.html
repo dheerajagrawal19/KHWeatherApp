@@ -2,13 +2,13 @@
   <table style="text-align:center">
     <tr>
       <td>Start Month
-        <select required (change)="onStartTimeChange($event.srcElement.value)">
+        <select required (change)="onStartTimeChange($event.target.value)">
           <option *ngFor="let p of months" [selected]="startMonth === p.val ">{{p.name}}</option>
         </select>
       </td>
       <td>
         Start Year
-        <select required (change)="onStartYearChange($event.srcElement.value)">
+        <select required (change)="onStartYearChange($event.target.value)">
           <option *ngFor="let y of years" [selected]="startYear === y ">{{y}}</option>
         </select>
       </td>
@@ -17,13 +17,13 @@
     <tr>
       <td>
         End Month
-        <select required (change)="onEndTimeChange($event.srcElement.value)">
+        <select required (change)="onEndTimeChange($event.target.value)">
           <option *ngFor="let p of months" [selected]="endMonth === p.val ">{{p.name}}</option>
         </select>
       </td>
       <td>
         End Year
-        <select required (change)="onYearEndChange($event.srcElement.value)">
+        <select required (change)="onYearEndChange($event.target.value)">
           <option *ngFor="let y of years" [selected]="endYear === y ">{{y}}</option>
         </select>
       </td>

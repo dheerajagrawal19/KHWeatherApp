@@ -10,7 +10,7 @@ import { ChartUpdaterService } from '../chart-updater.service';
   styleUrls: ['./my-line-chart.component.css']
 })
 export class MyLineChartComponent implements OnInit {
-
+  showCharts: boolean = true;
   public lineChartOptions: ChartOptions = {
     responsive: true,
   };
@@ -50,10 +50,9 @@ export class MyLineChartComponent implements OnInit {
     this.lineChartLabels = []
     list.forEach(element => {
       this.lineChartData[0]["data"].push(element.value);
+      this.lineChartData[0]["label"] = element.legend;
       this.lineChartLabels.push(getLabel(element));
     });
-
-    console.log(this.lineChartData)
-    console.log(this.lineChartLabels)
+    this.showCharts = false;
   }
 }

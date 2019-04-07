@@ -17,11 +17,4 @@ export class WeatherService {
     var url_path = this.baseurl + metric + "-" + location + ".json";
     return this._http.get<WeatherData[]>(url_path);
   }
-
-  getWeatherData2(metric: String, location: String) {
-    var url_path = this.baseurl + metric + "-" + location + ".json";
-    console.log(url_path);
-    return this._http.get(url_path);
-  }
-
 }

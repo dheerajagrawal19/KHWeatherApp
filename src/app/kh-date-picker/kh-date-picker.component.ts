@@ -11,8 +11,8 @@ import { ChartUpdaterService } from '../chart-updater.service';
 })
 export class KhDatePickerComponent implements OnInit {
   showDates: boolean = true;
-  startMonth: String = ""
-  endMonth: String = ""
+  startMonth: string = ""
+  endMonth: string = ""
   startYear: number = 1990
   endYear: number = 2019
   w_data: WeatherData[] = []
@@ -68,24 +68,52 @@ export class KhDatePickerComponent implements OnInit {
   }
 
   onStartTimeChange(val: any) {
+    console.log(val)
+    if (val > this.endMonth && this.startYear == this.endYear) {
+      alert("Not Allowed");
+      this.startMonth = this.endMonth;
+      return;
+    }
+
     this.startMonth = val;
     this.udpateChart();
   }
   onStartYearChange(val: any) {
+    if (val > this.endYear) {
+      alert("Not Allowed");
+      this.endYear = this.startYear;
+      return;
+    }
     this.startYear = val;
     this.udpateChart();
   }
   onEndTimeChange(val: any) {
+    if (val < this.startMonth && this.startYear == this.endYear) {
+      alert("Not Allowed");
+      this.endMonth = this.startMonth;
+      return;
+    }
+
     this.endMonth = val;
     this.udpateChart();
   }
   onYearEndChange(val: any) {
+    if (val < this.startYear) {
+      alert("Not Allowed");
+      this.startYear = this.endYear;
+      return;
+    }
+
+
     this.endYear = val;
     this.udpateChart();
   }
 
   udpateChart() {
-    let n_data = this.w_data
+    var n_data = this.w_data.filter((v, i, a) => {
+      return (v.year >= this.startYear) && (v.year <= this.endYear);
+    });
+
     this.chartUpdaterService.onChartUpdateEvent(n_data);
   }
 }
